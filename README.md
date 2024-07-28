@@ -1,6 +1,6 @@
 # A scraper for thuisbezorgd
 
-In this repository, we have a application to scrape https://www.thuisbezorgd.nl/. Then, we serve several different analytics endpoints to run
+In this repository, we have a application to scrape https://www.thuisbezorgd.nl/ and get restaurants in Amsterdam. Then, we serve several different analytics endpoints to run
 example queries on the scraped data.
 
 The project uses poetry as a package manager. There exists a Dockerfile to run the applications
