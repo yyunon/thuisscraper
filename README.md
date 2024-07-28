@@ -1,4 +1,4 @@
-# A scraper for thuisbezorgd
+# Get me the restaurants in Amsterdam!
 
 In this repository, we have a application to scrape https://www.thuisbezorgd.nl/ and get restaurants in Amsterdam. Then, we serve several different analytics endpoints to run
 example queries on the scraped data.
