@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "thuisscraper"
+version = "0.1.0"
+description = ""
+authors = ["yyunon <yonsel.yuksel@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fake-useragent = "1.5.1"
+aiohttp = "3.9.5"
+pydantic = "^2.8.2"
+psycopg2 = "^2.9.9"
+sqlalchemy = "^2.0.31"
+fastapi = "^0.111.1"
+cloudscraper = "^1.2.71"
+asyncio = "^3.4.3"
+beautifulsoup4 = "^4.12.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
