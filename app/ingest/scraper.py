@@ -104,7 +104,7 @@ class Scraper(object):
 		if deleteold:
 			self._database_wrapper.delete_objects()
 			self._database_wrapper.create_objects()
-		self._api_wrapper = await ApiWrapper.create(url=self.API_ENDPOINT, proxy_use=None, headers=generate_header(), trace=False)
+		self._api_wrapper = await ApiWrapper.create(url=self.API_ENDPOINT, headers=generate_header(), trace=False)
 
 		# We retrieve pages for amsterdam from the html	and retrive geo location information
 		postal_codes = []

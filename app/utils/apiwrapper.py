@@ -24,12 +24,12 @@ class ApiWrapper(object):
 	_wait_task: Task | None = None
 
 	@staticmethod
-	async def create(url: str, rate_limit=None, proxy_use = None, headers = {}, trace=False) -> 'ApiWrapper':
+	async def create(url: str, rate_limit=None, headers = {}, trace=False) -> 'ApiWrapper':
 		api = ApiWrapper()
-		return await api.setup(url, rate_limit, proxy_use, headers, trace)
+		return await api.setup(url, rate_limit, headers, trace)
 
 	@classmethod
-	async def setup(cls, url: str, rate_limit=None, proxy_use = None, headers = {}, trace=False):
+	async def setup(cls, url: str, rate_limit=None, headers = {}, trace=False):
 		if trace:
 			async def on_request_end(session, trace_config_ctx, params):
 				print("Ending %s request for %s. I sent: %s" % (params.method, params.url, params.headers))
