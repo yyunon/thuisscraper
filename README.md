@@ -31,3 +31,6 @@ You can also run the application via your host machine
 poetry install
 poetry run fastapi run ./app/main.py --port 8000
 ```
+
+You may have to modify get_headers function in cawse you encounter issues with reaching out to the server. 
+The function exists in https://github.com/yyunon/thuisscraper/blob/main/app/utils/headers.py
