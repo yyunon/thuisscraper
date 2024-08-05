@@ -14,7 +14,7 @@ _T = TypeVar("T")
 class ApiWrapper(object):
 
 	_url: str = ""
-	_proxy_url: str = ""
+	_proxy_url: str = None
 	_client_session: ClientSession | None = None
 	_trace_configs: list[TraceConfig] = []
 
@@ -38,7 +38,7 @@ class ApiWrapper(object):
 			trace_config.on_request_end.append(on_request_end)
 			cls._trace_configs.append(trace_config)
 		# formulate the proxy url with authentication
-		if (os.environ["proxy_host"] != "") and (os.environ["proxy_host"] is not None):
+		if ("proxy_host" in os.environ) and (os.environ["proxy_host"] != "") and (os.environ["proxy_host"] is not None):
 			proxy_username = os.environ["proxy_username"]
 			proxy_password = os.environ["proxy_password"]
 			proxy_host = os.environ["proxy_host"]
@@ -52,7 +52,7 @@ class ApiWrapper(object):
 			cls._wait_task = asyncio.create_task(wait_task(rate_limit))
 
 		cls._url = url
-		cls._client_session = aiohttp.ClientSession(headers=headers, trace_configs=cls._trace_configs, proxy=cls._proxy_url)
+		cls._client_session = aiohttp.ClientSession(headers=headers, trace_configs=cls._trace_configs)
 		return cls
 
 	@classmethod
@@ -64,7 +64,8 @@ class ApiWrapper(object):
 		if path != "" or path is not None:
 			path = "/".join([cls._url, path])
 		try: 
-			async with cls._client_session.get(path, headers = headers) as resp:
+			print(path)
+			async with cls._client_session.get(path, headers = headers, proxy=cls._proxy_url) as resp:
 				if resp.status == 200:
 					return await resp.json()
 				else:
@@ -77,7 +78,7 @@ class ApiWrapper(object):
 	@classmethod
 	async def get_from_url(cls, url: str, headers: Mapping[str, str] = {}) -> str:
 		try: 
-			async with cls._client_session.get(url, headers = headers) as resp:
+			async with cls._client_session.get(url, headers = headers, proxy=cls._proxy_url) as resp:
 				if resp.status == 200:
 					return resp.json()
 				else:

@@ -43,4 +43,4 @@ async def get_restaurant_count(database: DbWrapper= Depends(get_db)):
 		result = database.count(Restaurant)
 	except Exception as err:
 		raise HTTPException(status_code=400, detail=err.__repr__)
-	return JSONResponse(content = json.dumps({"count": result}), status_code=status.HTTP_201_CREATED)
+	return JSONResponse(content = json.dumps({"count": result}), status_code=status.HTTP_200_CREATED)
